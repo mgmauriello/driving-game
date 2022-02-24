@@ -19,6 +19,9 @@ document.addEventListener('keydown', function (event) {
   } else if (key === 40) {
     $racecar.className = 'down';
   }
+  if (key === 32) {
+    setInterval(startCar, 16);
+  }
 });
 
 // users can start car
@@ -28,7 +31,3 @@ function startCar(event) {
   $racecar.style.left = start + 'px';
   data.location.left = start;
 }
-
-document.addEventListener('keydown', function (event) {
-  setInterval(startCar, 16);
-});
