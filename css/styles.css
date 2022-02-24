@@ -8,3 +8,19 @@ img {
   height: 170px;
   width: 170px;
 }
+
+.right {
+  transform: rotate(0turn);
+}
+
+.up {
+  transform: rotate(-0.25turn);
+}
+
+.down {
+  transform: rotate(0.25turn);
+}
+
+.left {
+  transform: rotate(0.5turn);
+}
