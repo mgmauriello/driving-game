@@ -1,11 +1,12 @@
 var $racecar = document.querySelector('#racecar');
 
-// var data = {
-//   location: {
-//     top: 0,
-//     left: 0
-//   }
-// };
+var data = {
+  location: {
+    top: 0,
+    left: 0
+  }
+};
+
 // users can turn the car
 document.addEventListener('keydown', function (event) {
   var key = event.keyCode;
@@ -18,4 +19,16 @@ document.addEventListener('keydown', function (event) {
   } else if (key === 40) {
     $racecar.className = 'down';
   }
+});
+
+// users can start car
+var start = 0;
+function startCar(event) {
+  start += 5;
+  $racecar.style.left = start + 'px';
+  data.location.left = start;
+}
+
+document.addEventListener('keydown', function (event) {
+  setInterval(startCar, 16);
 });
