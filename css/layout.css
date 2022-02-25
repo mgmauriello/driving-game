@@ -4,15 +4,6 @@
   padding: 0 1.5rem;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.column-full {
-  width: 100%;
-}
-
 .center {
   text-align: center;
   justify-content: center;
