@@ -1,13 +1,14 @@
 var $racecar = document.querySelector('#racecar');
+var intervalID = null;
 
 var data = {
   location: {
     top: 0,
     left: 0
-  }
+  },
+  isCarMoving: false
 };
 
-// users can turn the car
 document.addEventListener('keydown', function (event) {
   var key = event.keyCode;
   if (key === 39) {
@@ -18,13 +19,17 @@ document.addEventListener('keydown', function (event) {
     $racecar.className = 'up';
   } else if (key === 40) {
     $racecar.className = 'down';
-  }
-  if (key === 32) {
-    setInterval(startCar, 16);
+  } else if (key === 32) {
+    if (data.isCarMoving === false) {
+      intervalID = setInterval(startCar, 16);
+      data.isCarMoving = true;
+    } else {
+      clearInterval(intervalID);
+      data.isCarMoving = false;
+    }
   }
 });
 
-// users can start car
 var start = 0;
 function startCar(event) {
   start += 5;
