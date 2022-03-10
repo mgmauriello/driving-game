@@ -1,5 +1,26 @@
+/* global require */
+require(['esri/config', 'esri/Map', 'esri/views/MapView'], function (esriConfig, Map, MapView) {
+
+  esriConfig.apiKey = 'AAPK3480a78e4f134cf88ef097abb200eb1eQR9IP6Sv5iSTgbzlt3yhDJ3vIVwSkDJlcnTbcIJ0iWaNCu_L4blv6qKOXbjQrwF5';
+
+  const map = new Map({
+    basemap: 'arcgis-topographic' // Basemap layer service
+  });
+
+  const view = new MapView({
+    map: map,
+    center: [-118.805, 34.027], // Longitude, latitude
+    zoom: 13, // Zoom level
+    container: 'view-div' // Div element
+  });
+
+  return view;
+});
+
 var $racecar = document.querySelector('#racecar');
 var intervalID = null;
+// var play = false;
+var audio = document.querySelector('audio#furious');
 
 var data = {
   direction: 'right',
@@ -28,9 +49,13 @@ document.addEventListener('keydown', function (event) {
     if (data.isCarMoving === false) {
       intervalID = setInterval(driveCar, 16);
       data.isCarMoving = true;
+      audio.play();
+      // play = true;
     } else {
       clearInterval(intervalID);
       data.isCarMoving = false;
+      audio.pause();
+      // play = false;
     }
   }
 });

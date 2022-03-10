@@ -1,7 +1,16 @@
-.background {
+/* .background {
   background-color: #288d25;
   min-height: 100%;
   min-width: 800px;
+} */
+
+html,
+body,
+#view-div {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }
 
 img {
