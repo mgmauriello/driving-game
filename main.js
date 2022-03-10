@@ -1,5 +1,26 @@
-var $racecar = document.querySelector('#racecar');
+/* global require */
+require(['esri/config', 'esri/Map', 'esri/views/MapView'], function (esriConfig, Map, MapView) {
+
+  esriConfig.apiKey = 'AAPK3480a78e4f134cf88ef097abb200eb1eQR9IP6Sv5iSTgbzlt3yhDJ3vIVwSkDJlcnTbcIJ0iWaNCu_L4blv6qKOXbjQrwF5';
+
+  const map = new Map({
+    basemap: 'arcgis-topographic' // Basemap layer service
+  });
+
+  const view = new MapView({
+    map: map,
+    center: [-118.494530, 34.011430], // Longitude, latitude
+    zoom: 13, // Zoom level
+    container: 'view-div' // Div element
+  });
+
+  return view;
+});
+
+var $vehicle = document.querySelector('.vehicle');
 var intervalID = null;
+var play = false;
+var audio = document.querySelector('audio#furious');
 
 var data = {
   direction: 'right',
@@ -10,29 +31,40 @@ var data = {
   isCarMoving: false
 };
 
+document.addEventListener('click', function (event) {
+  if (event.target.matches('.vehicle')) {
+    $vehicle.setAttribute('src', 'images/helicopter.png');
+  }
+});
+
 document.addEventListener('keydown', function (event) {
   var key = event.keyCode;
   if (key === 39) {
-    $racecar.className = 'right';
+    $vehicle.className = 'right';
     data.direction = 'right';
   } else if (key === 37) {
-    $racecar.className = 'left';
+    $vehicle.className = 'left';
     data.direction = 'left';
   } else if (key === 38) {
-    $racecar.className = 'up';
+    $vehicle.className = 'up';
     data.direction = 'up';
   } else if (key === 40) {
-    $racecar.className = 'down';
+    $vehicle.className = 'down';
     data.direction = 'down';
   } else if (key === 32) {
     if (data.isCarMoving === false) {
       intervalID = setInterval(driveCar, 16);
       data.isCarMoving = true;
+      audio.play();
+      play = true;
     } else {
       clearInterval(intervalID);
       data.isCarMoving = false;
+      audio.pause();
+      play = false;
     }
   }
+  return play;
 });
 
 // users can drive car
@@ -47,6 +79,6 @@ function driveCar(event) {
     data.location.top += 5;
   }
 
-  $racecar.style.top = `${data.location.top}px`;
-  $racecar.style.left = `${data.location.left}px`;
+  $vehicle.style.top = `${data.location.top}px`;
+  $vehicle.style.left = `${data.location.left}px`;
 }
