@@ -9,7 +9,7 @@ require(['esri/config', 'esri/Map', 'esri/views/MapView'], function (esriConfig,
 
   const view = new MapView({
     map: map,
-    center: [-118.805, 34.027], // Longitude, latitude
+    center: [-118.494530, 34.011430], // Longitude, latitude
     zoom: 13, // Zoom level
     container: 'view-div' // Div element
   });
@@ -17,7 +17,7 @@ require(['esri/config', 'esri/Map', 'esri/views/MapView'], function (esriConfig,
   return view;
 });
 
-var $racecar = document.querySelector('#racecar');
+var $vehicle = document.querySelector('.vehicle');
 var intervalID = null;
 var play = false;
 var audio = document.querySelector('audio#furious');
@@ -34,16 +34,16 @@ var data = {
 document.addEventListener('keydown', function (event) {
   var key = event.keyCode;
   if (key === 39) {
-    $racecar.className = 'right';
+    $vehicle.className = 'right';
     data.direction = 'right';
   } else if (key === 37) {
-    $racecar.className = 'left';
+    $vehicle.className = 'left';
     data.direction = 'left';
   } else if (key === 38) {
-    $racecar.className = 'up';
+    $vehicle.className = 'up';
     data.direction = 'up';
   } else if (key === 40) {
-    $racecar.className = 'down';
+    $vehicle.className = 'down';
     data.direction = 'down';
   } else if (key === 32) {
     if (data.isCarMoving === false) {
@@ -73,6 +73,12 @@ function driveCar(event) {
     data.location.top += 5;
   }
 
-  $racecar.style.top = `${data.location.top}px`;
-  $racecar.style.left = `${data.location.left}px`;
+  $vehicle.style.top = `${data.location.top}px`;
+  $vehicle.style.left = `${data.location.left}px`;
 }
+
+document.addEventListener('click', function (event) {
+  if (event.target.matches('.vehicle')) {
+    $vehicle.setAttribute('src', 'images/helicopter.png');
+  }
+});
