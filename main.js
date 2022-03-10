@@ -31,6 +31,12 @@ var data = {
   isCarMoving: false
 };
 
+document.addEventListener('click', function (event) {
+  if (event.target.matches('.vehicle')) {
+    $vehicle.setAttribute('src', 'images/helicopter.png');
+  }
+});
+
 document.addEventListener('keydown', function (event) {
   var key = event.keyCode;
   if (key === 39) {
@@ -76,9 +82,3 @@ function driveCar(event) {
   $vehicle.style.top = `${data.location.top}px`;
   $vehicle.style.left = `${data.location.left}px`;
 }
-
-document.addEventListener('click', function (event) {
-  if (event.target.matches('.vehicle')) {
-    $vehicle.setAttribute('src', 'images/helicopter.png');
-  }
-});
