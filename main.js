@@ -19,7 +19,7 @@ require(['esri/config', 'esri/Map', 'esri/views/MapView'], function (esriConfig,
 
 var $racecar = document.querySelector('#racecar');
 var intervalID = null;
-// var play = false;
+var play = false;
 var audio = document.querySelector('audio#furious');
 
 var data = {
@@ -50,14 +50,15 @@ document.addEventListener('keydown', function (event) {
       intervalID = setInterval(driveCar, 16);
       data.isCarMoving = true;
       audio.play();
-      // play = true;
+      play = true;
     } else {
       clearInterval(intervalID);
       data.isCarMoving = false;
       audio.pause();
-      // play = false;
+      play = false;
     }
   }
+  return play;
 });
 
 // users can drive car
