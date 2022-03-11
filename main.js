@@ -35,12 +35,6 @@ document.addEventListener('click', function (event) {
   if (event.target.matches('#car')) {
     $vehicle.setAttribute('src', 'images/helicopter.png');
   }
-  if (event.target.matches('#helicopter')) {
-    $vehicle.setAttribute('src', 'images/crab.png');
-  }
-  if (event.target.matches('#crab')) {
-    $vehicle.setAttribute('src', 'images/f1.svg');
-  }
 });
 
 document.addEventListener('keydown', function (event) {
